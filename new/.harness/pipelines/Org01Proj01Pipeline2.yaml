@@ -1,0 +1,70 @@
+pipeline:
+    name: Org01-Proj01-Pipeline2
+    identifier: Org01Proj01Pipeline2
+    projectIdentifier: Org_01Project_01
+    orgIdentifier: Organization01
+    tags: {}
+    stages:
+        - stage:
+              name: approval stage
+              identifier: approval_stage
+              description: ""
+              type: Approval
+              spec:
+                  execution:
+                      steps:
+                          - step:
+                                name: approval
+                                identifier: approval
+                                type: HarnessApproval
+                                timeout: 1d
+                                spec:
+                                    approvalMessage: |-
+                                        Please review the following information
+                                        and approve the pipeline progression
+                                    includePipelineExecutionHistory: true
+                                    approvers:
+                                        minimumCount: 1
+                                        disallowPipelineExecutor: false
+                                        userGroups:
+                                            - account.Harnesscustomug
+                                    approverInputs: []
+              tags: {}
+        - stage:
+              name: build_stage
+              identifier: build_stage
+              description: ""
+              type: CI
+              spec:
+                  cloneCodebase: true
+                  infrastructure:
+                      type: KubernetesHosted
+                      spec:
+                          identifier: k8s-hosted-infra
+                  execution:
+                      steps:
+                          - step:
+                                type: Run
+                                name: Welcome MSG
+                                identifier: Welcome_MSG
+                                spec:
+                                    connectorRef: docker_01
+                                    image: alpine
+                                    shell: Sh
+                                    command: echo "welcome to Harness io -sree"
+                          - step:
+                                type: BuildAndPushDockerRegistry
+                                name: build-push-docker
+                                identifier: buildpushdocker
+                                spec:
+                                    connectorRef: docker_01
+                                    repo: sreelk589/build-push-approve
+                                    tags:
+                                        - latest
+                                        - 1.0.0
+    properties:
+        ci:
+            codebase:
+                connectorRef: githubconnector_01
+                repoName: sample-dockerfile
+                build: <+input>
