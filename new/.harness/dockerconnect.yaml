@@ -1,0 +1,15 @@
+connector:
+  name: docker-connect
+  identifier: dockerconnect
+  description: ""
+  orgIdentifier: Organization01
+  projectIdentifier: Org_01Project_01
+  type: DockerRegistry
+  spec:
+    dockerRegistryUrl: https://index.docker.io/v2/
+    providerType: DockerHub
+    auth:
+      type: UsernamePassword
+      spec:
+        username: sreelk589
+        passwordRef: docker_hub_pswd
