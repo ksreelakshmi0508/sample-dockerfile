@@ -1,0 +1,47 @@
+pipeline:
+    name: Org01_Project01_Pipeline3
+    identifier: Org01_Project01_Pipeline3
+    projectIdentifier: Org_01Project_01
+    orgIdentifier: Organization01
+    tags: {}
+    properties:
+        ci:
+            codebase:
+                connectorRef: githubconnector_01
+                repoName: sample-dockerfile
+                build: <+input>
+    stages:
+        - stage:
+              name: build
+              identifier: build
+              description: ""
+              type: CI
+              spec:
+                  cloneCodebase: true
+                  infrastructure:
+                      type: KubernetesHosted
+                      spec:
+                          identifier: k8s-hosted-infra
+                  execution:
+                      steps:
+                          - step:
+                                type: Run
+                                name: RUN
+                                identifier: RUN
+                                spec:
+                                    connectorRef: docker_01
+                                    image: alpine
+                                    shell: Sh
+                                    command: echo "Welcome to Harness io - sree"
+    notificationRules:
+        - name: notify-sree-pipeline3
+          identifier: notifysreepipeline3
+          pipelineEvents:
+              - type: AllEvents
+          notificationMethod:
+              type: Email
+              spec:
+                  userGroups: []
+                  recipients:
+                      - ksreelakshmi0508@gmail.com
+          enabled: true
