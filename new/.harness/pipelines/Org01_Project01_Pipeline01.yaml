@@ -1,0 +1,35 @@
+pipeline:
+    name: Org01_Project01_Pipeline01
+    identifier: Org01_Project01_Pipeline01
+    projectIdentifier: Org_01Project_01
+    orgIdentifier: Organization01
+    tags: {}
+    properties:
+        ci:
+            codebase:
+                connectorRef: githubconnector_01
+                repoName: helloworld-pom
+                build: <+input>
+    stages:
+        - stage:
+              name: build
+              identifier: build
+              description: ""
+              type: CI
+              spec:
+                  cloneCodebase: true
+                  infrastructure:
+                      type: KubernetesHosted
+                      spec:
+                          identifier: k8s-hosted-infra
+                  execution:
+                      steps:
+                          - step:
+                                type: Run
+                                name: Welcome Msg
+                                identifier: Welcome_Msg
+                                spec:
+                                    connectorRef: docker_01
+                                    image: alpine
+                                    shell: Sh
+                                    command: echo "Welcome to Harness io - sree"
