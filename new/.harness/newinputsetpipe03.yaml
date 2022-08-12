@@ -1,0 +1,14 @@
+inputSet:
+  identifier: "newinputsetpipe03"
+  name: "new-input-set-pipe03"
+  orgIdentifier: "Organization01"
+  projectIdentifier: "Org_01Project_01"
+  pipeline:
+    identifier: "Org01Proj01Pipeline03"
+    properties:
+      ci:
+        codebase:
+          build:
+            type: "branch"
+            spec:
+              branch: "main"
