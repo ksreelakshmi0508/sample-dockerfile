@@ -33,3 +33,4 @@ pipeline:
                                     image: alpine
                                     shell: Sh
                                     command: echo "Welcome to Harness io - sree"
+    description: Pipeline with only the build stage
