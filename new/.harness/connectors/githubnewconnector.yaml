@@ -1,0 +1,23 @@
+connector:
+  name: github-new-connector
+  identifier: githubnewconnector
+  description: ""
+  orgIdentifier: Organization01
+  projectIdentifier: Org_01Project_01
+  type: Github
+  spec:
+    url: https://github.com/ksreelakshmi0508/
+    validationRepo: sample-dockerfile
+    authentication:
+      type: Http
+      spec:
+        type: UsernameToken
+        spec:
+          username: ksreelakshmi0508
+          tokenRef: githubtoken01
+    apiAccess:
+      type: Token
+      spec:
+        tokenRef: githubtoken01
+    executeOnDelegate: false
+    type: Account
