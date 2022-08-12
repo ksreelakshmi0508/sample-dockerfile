@@ -1,7 +1,7 @@
 # This is a standard Dockerfile for building a Go app.
 # It is a multi-stage build: the first stage compiles the Go source into a binary, and
 #   the second stage copies only the binary into an alpine base.
-
+#adding a new line -- for testing purpose
 # -- Stage 1 -- #
 # Compile the app.
 FROM golang:1.12-alpine as builder
