@@ -1,0 +1,44 @@
+pipeline:
+    name: Org01-Proj01-Pipeline03
+    identifier: Org01Proj01Pipeline03
+    projectIdentifier: Org_01Project_01
+    orgIdentifier: Organization01
+    tags: {}
+    properties:
+        ci:
+            codebase:
+                connectorRef: githubnewconnector
+                repoName: sample-dockerfile
+                build: <+input>
+    stages:
+        - stage:
+              name: build
+              identifier: build
+              description: ""
+              type: CI
+              spec:
+                  cloneCodebase: true
+                  infrastructure:
+                      type: KubernetesHosted
+                      spec:
+                          identifier: k8s-hosted-infra
+                  execution:
+                      steps:
+                          - step:
+                                type: Run
+                                name: RUN
+                                identifier: RUN
+                                spec:
+                                    connectorRef: docker_01
+                                    image: alpine
+                                    shell: Sh
+                                    command: echo "Welcome to Harness io -sree"
+                          - step:
+                                type: BuildAndPushDockerRegistry
+                                name: docker
+                                identifier: docker
+                                spec:
+                                    connectorRef: dockerconnect
+                                    repo: sreelk589/harness-notify
+                                    tags:
+                                        - latest
