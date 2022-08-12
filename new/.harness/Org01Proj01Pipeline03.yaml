@@ -42,3 +42,15 @@ pipeline:
                                     repo: sreelk589/harness-notify
                                     tags:
                                         - latest
+    notificationRules:
+        - name: sree
+          identifier: sree
+          pipelineEvents:
+              - type: AllEvents
+          notificationMethod:
+              type: Email
+              spec:
+                  userGroups: []
+                  recipients:
+                      - ksreelakshmi0508@gmail.com
+          enabled: true
