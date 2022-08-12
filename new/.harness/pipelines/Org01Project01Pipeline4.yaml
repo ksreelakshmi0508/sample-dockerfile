@@ -1,0 +1,68 @@
+pipeline:
+    name: Org01-Project01-Pipeline4
+    identifier: Org01Project01Pipeline4
+    projectIdentifier: Org_01Project_01
+    orgIdentifier: Organization01
+    tags: {}
+    stages:
+        - stage:
+              name: custom-stage
+              identifier: customstage
+              description: ""
+              type: Custom
+              spec:
+                  execution:
+                      steps:
+                          - step:
+                                type: ShellScript
+                                name: shell script
+                                identifier: shell_script
+                                spec:
+                                    shell: Bash
+                                    onDelegate: true
+                                    source:
+                                        type: Inline
+                                        spec:
+                                            script: echo "welcome"
+                                    environmentVariables: []
+                                    outputVariables: []
+                                    executionTarget: {}
+                                timeout: 10m
+              tags: {}
+        - stage:
+              name: build
+              identifier: build
+              description: ""
+              type: CI
+              spec:
+                  cloneCodebase: true
+                  infrastructure:
+                      type: KubernetesHosted
+                      spec:
+                          identifier: k8s-hosted-infra
+                  execution:
+                      steps:
+                          - step:
+                                type: Run
+                                name: Run
+                                identifier: Run
+                                spec:
+                                    connectorRef: docker_01
+                                    image: alpine
+                                    shell: Sh
+                                    command: echo "Welcome to Harness - sree"
+                          - step:
+                                type: BuildAndPushDockerRegistry
+                                name: build-push-docker
+                                identifier: buildpushdocker
+                                spec:
+                                    connectorRef: docker_01
+                                    repo: sreelk589/harness-cron
+                                    tags:
+                                        - latest
+    properties:
+        ci:
+            codebase:
+                connectorRef: githubconnector_01
+                repoName: sample-dockerfile
+                build: <+input>
