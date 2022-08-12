@@ -66,3 +66,4 @@ pipeline:
                 connectorRef: githubconnector_01
                 repoName: sample-dockerfile
                 build: <+input>
+    description: Pipeline with cron job
