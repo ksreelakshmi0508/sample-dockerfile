@@ -27,7 +27,7 @@ pipeline:
                                         minimumCount: 1
                                         disallowPipelineExecutor: false
                                         userGroups:
-                                            - account.Harnesscustomug
+                                            - devops
                                     approverInputs: []
               tags: {}
         - stage:
