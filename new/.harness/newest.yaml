@@ -44,7 +44,21 @@ pipeline:
                       serviceDefinition:
                           spec:
                               variables: []
-                              manifests: []
+                              manifests:
+                                  - manifest:
+                                        identifier: new
+                                        type: K8sManifest
+                                        spec:
+                                            store:
+                                                type: Github
+                                                spec:
+                                                    connectorRef: githubnewconnector
+                                                    gitFetchType: Branch
+                                                    paths:
+                                                        - app-deploy.yaml
+                                                    repoName: sample-dockerfile
+                                                    branch: main
+                                            skipResourceVersioning: false
                               artifacts:
                                   primary:
                                       spec:
