@@ -46,7 +46,7 @@ pipeline:
                               variables: []
                               manifests:
                                   - manifest:
-                                        identifier: new_manifest
+                                        identifier: manifest 2
                                         type: K8sManifest
                                         spec:
                                             store:
@@ -55,11 +55,9 @@ pipeline:
                                                     connectorRef: githubnewconnector
                                                     gitFetchType: Branch
                                                     paths:
-                                                        - manifest
+                                                        - sample-dockerfile/blob/main/app-deploy.yaml
                                                     repoName: sample-dockerfile
                                                     branch: main
-                                            valuesPaths:
-                                                - app-deploy
                                             skipResourceVersioning: false
                               artifacts:
                                   primary:
