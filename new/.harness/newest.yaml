@@ -74,7 +74,7 @@ pipeline:
                           spec:
                               connectorRef: account.Harness_Kubernetes_Cluster
                               namespace: harness-delegate-ng
-                              releaseName: release-<+INFRA_KEY>
+                              releaseName: <+input>
                       allowSimultaneousDeployments: false
                   execution:
                       steps:
@@ -99,3 +99,5 @@ pipeline:
                             - AllErrors
                         action:
                             type: StageRollback
+              delegateSelectors:
+                  - harness-kubernetes-delegate
