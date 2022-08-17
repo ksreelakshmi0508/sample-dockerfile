@@ -46,7 +46,7 @@ pipeline:
                               variables: []
                               manifests:
                                   - manifest:
-                                        identifier: new
+                                        identifier: demo
                                         type: K8sManifest
                                         spec:
                                             store:
@@ -55,8 +55,8 @@ pipeline:
                                                     connectorRef: githubnewconnector
                                                     gitFetchType: Branch
                                                     paths:
-                                                        - app-deploy.yaml
-                                                    repoName: sample-dockerfile
+                                                        - content/en/examples/application/nginx-app.yaml
+                                                    repoName: https://github.com/kubernetes/website
                                                     branch: main
                                             skipResourceVersioning: false
                               artifacts:
