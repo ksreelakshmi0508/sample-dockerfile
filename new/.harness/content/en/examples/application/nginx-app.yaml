@@ -1,0 +1,22 @@
+connector:
+  name: latest
+  identifier: latest
+  orgIdentifier: Organization01
+  projectIdentifier: Org_01Project_01
+  type: Github
+  spec:
+    url: https://github.com/kubernetes/website
+    authentication:
+      type: Http
+      spec:
+        type: OAuth
+        spec:
+          tokenRef: account.harnessoauthaccesstoken_github_1660705785425
+    apiAccess:
+      type: OAuth
+      spec:
+        tokenRef: account.harnessoauthaccesstoken_github_1660705785425
+    delegateSelectors:
+    - harness-kubernetes-delegate
+    executeOnDelegate: true
+    type: Repo
